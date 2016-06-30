@@ -41,8 +41,16 @@ class ReposTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedRepo = store.repositories[indexPath.row]
         store.toggleStarStatusForRepository(selectedRepo) { (isStarred) in
-            if isStarred { self.createAlert("You just starred", repoFullName: selectedRepo.fullName) }
-            else { self.createAlert("You just unstarred", repoFullName: selectedRepo.fullName) }
+            if isStarred {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.createAlert("You just starred", repoFullName: selectedRepo.fullName)
+                })
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.createAlert("You just unstarred", repoFullName: selectedRepo.fullName)
+                })
+            }
         }
     }
     

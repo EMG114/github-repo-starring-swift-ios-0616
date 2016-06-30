@@ -30,7 +30,7 @@ class GithubAPIClient {
     }
     
     class func checkIfRepositoryIsStarred(fullName: String, completion: (Bool) -> ()) {
-        let urlString = "\(githubAPIURL)/repositories?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
+        let urlString = "\(githubAPIURL)/user/starred/\(fullName)?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
         guard let url = NSURL(string: urlString) else { assertionFailure("Invalid URL"); return }
         let request = NSURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
@@ -49,7 +49,7 @@ class GithubAPIClient {
     }
     
     class func starRepository(fullName: String, completion: () -> ()) {
-        let urlString = "\(githubAPIURL)/repositories?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
+        let urlString = "\(githubAPIURL)/user/starred/\(fullName)?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
         guard let url = NSURL(string: urlString) else { assertionFailure("Invalid URL"); return }
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "PUT"
@@ -63,7 +63,7 @@ class GithubAPIClient {
     }
     
     class func unstarRepository(fullName: String, completion: () -> ()) {
-        let urlString = "\(githubAPIURL)/repositories?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
+        let urlString = "\(githubAPIURL)/user/starred/\(fullName)?client_id=\(githubClientID)&client_secret=\(githubClientSecret)&access_token=\(githubAccessToken)"
         guard let url = NSURL(string: urlString) else { assertionFailure("Invalid URL"); return }
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "DELETE"
