@@ -1,6 +1,6 @@
 //
-//  FISGithubRepository.swift
-//  github-repo-list-swift
+//  GithubRepository.swift
+//  github-repo-starring-swift
 //
 //  Created by Haaris Muneer on 6/28/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.

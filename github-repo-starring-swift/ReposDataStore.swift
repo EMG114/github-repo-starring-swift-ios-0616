@@ -1,6 +1,6 @@
 //
-//  FISReposDataStore.swift
-//  github-repo-list-swift
+//  ReposDataStore.swift
+//  github-repo-starring-swift
 //
 //  Created by Haaris Muneer on 6/28/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
@@ -25,21 +25,6 @@ class ReposDataStore {
                 
             }
             completion()
-        }
-    }
-    
-    func toggleStarStatusForRepository(repository: GithubRepository, toggleCompletion: (Bool) -> ()) {
-        GithubAPIClient.checkIfRepositoryIsStarred(repository.fullName) { (isStarred) in
-            if isStarred {
-                GithubAPIClient.unstarRepository(repository.fullName, completion: { 
-                    toggleCompletion(false)
-                })
-            }
-            else {
-                GithubAPIClient.starRepository(repository.fullName, completion: { 
-                    toggleCompletion(true)
-                })
-            }
         }
     }
 
