@@ -1,6 +1,6 @@
 //
-//  FISReposTableViewController.swift
-//  github-repo-list-swift
+//  ReposTableViewController.swift
+//  github-repo-starring-swift
 //
 //  Created by Haaris Muneer on 6/28/16.
 //  Copyright © 2016 Flatiron School. All rights reserved.
@@ -16,9 +16,7 @@ class ReposTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.tableView.accessibilityLabel = "tableView"
-        tableView.accessibilityLabel = "tableView"
         self.tableView.accessibilityIdentifier = "tableView"
-        tableView.accessibilityIdentifier = "tableView"
         
         store.getRepositoriesWithCompletion {
             NSOperationQueue.mainQueue().addOperationWithBlock({ 
@@ -42,32 +40,5 @@ class ReposTableViewController: UITableViewController {
 
         return cell
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedRepo = store.repositories[indexPath.row]
-        store.toggleStarStatusForRepository(selectedRepo) { (isStarred) in
-            if isStarred {
-                dispatch_async(dispatch_get_main_queue(), { 
-                    self.createAlert("You just starred", repoFullName: selectedRepo.fullName)
-                })
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue(), { 
-                    self.createAlert("You just unstarred", repoFullName: selectedRepo.fullName)
-                })
-            }
-        }
-    }
-    
-    func createAlert(message: String, repoFullName: String) {
-        let alertMessage = "\(message) \(repoFullName)"
-        let alertController = UIAlertController(title: "Success!", message: alertMessage, preferredStyle: .Alert)
-        alertController.accessibilityLabel = alertMessage
-        let ok = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(ok)
-        ok.accessibilityLabel = "OK"
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
- 
 
 }
