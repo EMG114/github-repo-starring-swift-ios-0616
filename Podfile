@@ -5,6 +5,8 @@ target 'github-repo-starring-swift' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
+  pod 'OHHTTPStubs'
+
   # Pods for github-repo-starring-swift
 
   target 'github-repo-starring-swiftTests' do

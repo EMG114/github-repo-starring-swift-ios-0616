@@ -14,7 +14,12 @@ class ReposTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.accessibilityLabel = "tableView"
+        tableView.accessibilityLabel = "tableView"
+        self.tableView.accessibilityIdentifier = "tableView"
+        tableView.accessibilityIdentifier = "tableView"
+        
         store.getRepositoriesWithCompletion {
             NSOperationQueue.mainQueue().addOperationWithBlock({ 
                 self.tableView.reloadData()
@@ -57,8 +62,10 @@ class ReposTableViewController: UITableViewController {
     func createAlert(message: String, repoFullName: String) {
         let alertMessage = "\(message) \(repoFullName)"
         let alertController = UIAlertController(title: "Success!", message: alertMessage, preferredStyle: .Alert)
+        alertController.accessibilityLabel = alertMessage
         let ok = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alertController.addAction(ok)
+        ok.accessibilityLabel = "OK"
         self.presentViewController(alertController, animated: true, completion: nil)
     }
  
