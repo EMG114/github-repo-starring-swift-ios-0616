@@ -45,13 +45,13 @@ class GithubAPIClient {
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard let responseValue = response as? NSHTTPURLResponse
-                else { fatalError("this did not work")
+                else { fatalError("did not work")
             }
             if responseValue.statusCode == 204 {
-                print("repo was starred")
+                print("repo starred")
                 completion(true)
             }else if responseValue.statusCode == 404 {
-                print("repo was not starred")
+                print("repo not starred")
                 completion(false)
             }else {
                 print("other status code \(responseValue.statusCode)")
@@ -88,7 +88,7 @@ class GithubAPIClient {
     
     class func unStarRepository(fullName: String, completion:() -> ()){
         
-        let urlString = "\(Secrets.starAPIURL)/\(fullName)" //from secret
+        let urlString = "\(Secrets.starAPIURL)/\(fullName)"
         let url = NSURL(string: urlString)
         let session = NSURLSession.sharedSession()
         
@@ -100,13 +100,13 @@ class GithubAPIClient {
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard let responseValue = response as? NSHTTPURLResponse else {
-                fatalError("this did not work")
+                fatalError("did not work")
             }
             if responseValue.statusCode == 204 {
-                print("I am unstarring repository")
+                print("unstarring repository")
                 completion()
             }else {
-                print("Unstar Repo : other status code \(responseValue.statusCode)")
+                print("other status code \(responseValue.statusCode)")
             }
         }
         task.resume()
